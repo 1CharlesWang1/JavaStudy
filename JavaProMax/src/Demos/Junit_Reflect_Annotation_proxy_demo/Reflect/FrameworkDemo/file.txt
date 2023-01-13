@@ -1,0 +1,10 @@
+===Student===
+name=wcl
+age=20
+major=Computer
+
+===Teacher===
+name=ccy
+age=30
+salary=10000.0
+

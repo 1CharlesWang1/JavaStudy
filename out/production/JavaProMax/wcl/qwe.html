@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Staff Management System</title>
+    <link rel="stylesheet" href="qwe.css">
+</head>
+<body>
+<h1>Staff Management System</h1>
+<button id="add-button">Add Staff Member</button>
+<table id="staff-table">
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    <!-- Staff member data will be added here dynamically using JavaScript -->
+</table>
+<div id="add-form" style="display:none;">
+    <h2>Add Staff Member</h2>
+    <form id="add-staff-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" required><br>
+        <label for="position">Position:</label><br>
+        <input type="text" id="position" required><br>
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" required><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" required><br><br>
+        <button type="submit">Add</button>
+        <button type="button" id="cancel-button">Cancel</button>
+    </form>
+</div>
+<script src="script.js">
+    // Show the add form when the "Add Staff Member" button is clicked
+    document.getElementById("add-button").addEventListener("click", function() {
+        document.getElementById("add-form").style.display = "block";
+    });
+
+    // Hide the add form when the "Cancel" button is clicked
+    document.getElementById("cancel-button").addEventListener("click", function() {
+        document.getElementById("add-form").style.display = "none";
+    });
+
+    // Add a new staff member to the table when the form is submitted
+    document.getElementById("add-staff-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // prevent the form from being submitted
+        addStaffMember();
+    });
+
+    // Add a new staff member to the table
+    // Add a new staff member to the table
+    function addStaffMember() {
+        // Get the values from the form inputs
+        var name = document.getElementById("name").value;
+        var position = document.getElementById("position").value;
+        var phone = document.getElementById("phone").value;
+        var email = document.getElementById("email").value;
+
+        // Create a new table row element
+        var newRow = document.createElement("tr");
+
+        // Add the name, position, phone, and email to the row
+        newRow.innerHTML = `
+    <td>${name}</td>
+    <td>${position}</td>
+    <td>${phone}</td>
+    <td>${email}</td>
+  `;
+
+        // Add a delete button to the row
+        var deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.addEventListener("click", deleteStaffMember);
+        newRow.appendChild(deleteButton);
+
+        // Add the row to the table
+        document.getElementById("staff-table").appendChild(newRow);
+
+        // Clear the form inputs
+        document.getElementById("name").value = "";
+        document.getElementById("position").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("email").value = "";
+
+        // Hide the add form
+        document.getElementById("add-form").style.display = "none";
+    }
+
+    // Delete a staff member from the table
+    function deleteStaffMember() {
+        var row = this.parentNode;
+        row.parentNode.removeChild(row);
+    }
+
+
+</script>
+</body>
+</html>
